@@ -2,16 +2,26 @@ var fs = require('fs');
 
 function Schema(schemaFile) {
 	this.file = '';
+	this.schemaIndex = 0;
 	
 	this.setup = function(schemaFile) {
 		this.file = schemaFile;
 		this.data = JSON.parse(fs.readFileSync(schemaFile, 'utf8'));
+		this.initIndex();
 	};
 
 	this.persist = function() {
 		fs.writeFileSync(this.file, 
 			JSON.stringify(this.data));
-	}
+	};
+
+	this.initIndex = function() {
+		for(item in this.data) {
+			if(this.schemaIndex < this.data[item].id)
+				this.schemaIndex = this.data[item].id;
+		}
+		this.schemaIndex ++;
+	};
 
 	this.getAll = function() {
 		return this.data;
@@ -25,16 +35,22 @@ function Schema(schemaFile) {
 	};
 
 	this.save = function(object) {
-		for(i in this.data) {
-			if(object.id == this.data[i]) {
-				this.data[i] = object;
-				return true;
-			}		
+		if(object.id == undefined) {
+			object.id = this.schemaIndex++;
+			console.log('Adding ' + object.id);
+			this.data.push(object);	
+		} else {
+			for(i in this.data) {
+				if(object.id == this.data[i].id) {
+					this.data[i] = object;
+					console.log('Saving ' + object.id);
+					return true;
+				}		
+			}
 		}
-		this.data.push(object);
 	};
 
-	this.remove = function(id) {
+	this.delete = function(id) {
 		for(i in this.data) {
 			if(id == this.data[i].id) {
 				this.data.splice(i, 1);
