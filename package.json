@@ -1,0 +1,31 @@
+{
+  "name": "spidydb",
+  "description": "Simple DB abstraction in local folder",
+  "version": "0.0.1",
+  "author": {
+    "name": "Cristian Colorado",
+    "email": "ccoloradoc@gmail.com",
+    "url": "http://cristiancolorado.com"
+  },
+  "keywords": [
+    "database",
+    "local",
+    "embebbed",
+    "file",
+    "storage"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ccoloradoc/spidydb"
+  },
+  "license": "MIT",
+  "files": [
+    "Readme.md",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "directories": {},  
+  "readme": "ERROR: No README data found!"
+}
