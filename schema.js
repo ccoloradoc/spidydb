@@ -13,6 +13,10 @@ function Schema(schemaFile) {
 			JSON.stringify(this.data));
 	}
 
+	this.getAll = function() {
+		return this.data;
+	};
+
 	this.find = function(id) {
 		for(item in this.data) {
 			if(this.data[item].id == id)
