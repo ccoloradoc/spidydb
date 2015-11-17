@@ -25,3 +25,8 @@ db.activity.delete(4);
 db.activity.iterate(function(i, data) {
 	console.log(data);
 });
+
+
+db.iterate(function(name, schema) {
+	console.log(name);
+});
